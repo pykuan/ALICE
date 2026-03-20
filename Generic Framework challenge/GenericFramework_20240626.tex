@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{amsmath,amssymb,url}
+
+\begin{document}
+
+\begin{center}
+\Large{\bf{Generic framework for multi-particle azimuthal correlators}}\\
+\end{center}
+\begin{center}
+{\small\today}
+\end{center}
+
+We have seen in the previous examples that any anisotropic emission of particles in heavy-ion collisions can be parameterized with the Fourier series, e.g. with the following form:  
+%
+\begin{equation}
+f(\varphi) = \frac{1}{2\pi}\left[1+2\sum_{n=1}^\infty v_n\cos[n(\varphi-\Psi_n)]\right]\,,
+\label{eq:Fourier_vn_psin}
+\end{equation}
+%
+where, in the context of flow analyses, $v_n$ are {\it anisotropic flow harmonics}, and $\Psi_n$ corresponding {\it symmetry planes}. Given the above Fourier decomposition, and using just the orthogonality properties of trigonometric functions, one can show that flow harmonics $v_n$ are determined via the following simple relation:
+%
+\begin{equation}
+v_n = \left<\cos[n(\varphi-\Psi_n)]\right>\,.
+\label{eq:vn}
+\end{equation}
+%
+As its derivation was purely mathematical, this expression is true in general, i.e. whether or not anisotropies in $\varphi$ distribution result from anisotropic flow, of from some other phenomena. However, this mathematical expression has little practical relevance, since  experimentally we do not have the reliable event-by-event estimate of symmetry planes $\Psi_n$.
+
+Physics enters these studies with the following observation: When only collective anisotropic flow is present, all produced particles are emitted {\it independently} to each other, and are correlated only to some common symmetry plane. This implies that the joint p.d.f. for {\it any} number $n$ of particles will factorize as follows:
+%
+\begin{equation}
+f(\varphi_1,\cdots,\varphi_n) = f_{\varphi_{1}}(\varphi_{1})\cdots f_{\varphi_{n}}(\varphi_n)\,,
+\label{eq:factorization}
+\end{equation}
+%
+where for each $i$ the functional form of the normalized marginalized p.d.f, $f_{\varphi_i}(\varphi_i)$, is the same and given by Fourier series in Eq.~(\ref{eq:Fourier_vn_psin}). Based on this reasoning, one can build up in principle infinitely many independent azimuthal observables sensitive to various combinations of flow harmonics and corresponding symmetry planes by adding more and more particles to the correlators. The general procedure to accomplish this will be outlined later in this exercise. The simplest example is the following analytic result for 2-particle azimuthal correlation:  
+%
+\begin{equation}
+\left<\cos[n(\varphi_1\!-\!\varphi_2)\right> = v_{n}^2\,.
+\label{eq:2p}
+\end{equation}
+%
+This expression is exact when factorization in Eq.~(\ref{eq:factorization}) is exact, which is true if all sources of correlations in the system are due only to anisotropic flow. 
+
+Experimentally, 2-particle correlation in Eq.~(\ref{eq:2p}) is an unbiased estimator of $v_n^2$ only if all pairs of azimuthal angles $(\varphi_1,\varphi_2)$ in the correlator on the LHS are distinct, i.e. if all cases of self-correlations (or auto-correlations) were exactly removed. This can be achieved efficiently and exactly with the formalism of $Q$-vectors. The $Q$-vector (also sometimes called flow vector) evaluated in harmonic $n$ is defined as:
+%
+\begin{equation}
+Q_{n}\equiv\sum_{i=1}^{M}e^{in\varphi_i}\,.
+\label{a:q-vector}
+\end{equation}
+% 
+We can evaluate with a {\it single pass} over particles complex $Q$-vectors, in principle, for any number of distinct harmonics $n$. The key point is that all multi-particle azimuthal correlations can be expressed analytically it terms of $Q$-vectors evaluated (in general) in different harmonics. For instance, expressed analytically in terms of $Q$-vectors, the 2-p correlation reads:
+%
+\begin{eqnarray}
+\left<2\right> &\equiv& \left<\cos(n(\varphi_1\!-\!\varphi_2))\right>\nonumber\\ 
+&=&\frac{1}{\binom{M}{2}2!}\,\sum_{\begin{subarray}{c}i,j=1\\ (i\neq j)\end{subarray}}^{M} e^{in(\varphi_i-\varphi_j)}\nonumber\\
+&=&\frac{1}{\binom{M}{2}2!}\!\times\!
+\big[\left|Q_{n}\right|^2\!-\!M\big]\,.
+\label{eq:two1n1n}
+\end{eqnarray}
+%
+Initially, the similar analytic expressions in terms of $Q$-vectors were derived and implemented case-by-case for all multi-particle azimuthal correlators of interest---the collection of all hard-coded formulas can be found in Appendix~G of~\cite{Bilandzic:2012wva}.
+
+Eventually, however, it was realized that such analytic expressions in terms of $Q$-vectors can be also obtained recursively, which tremendously simplifies the implementation at higher orders. In terms of efficiency, hard-coded expressions evaluate faster up to and including 6-particle correlators. For 7- and higher-order correlators the implementation of hard-coded expressions becomes very impractical and just their compilation takes a lot of time.
+
+Therefore, the suggested strategy is to use hard-coded expressions up to and including 6-particle correlators, and the recursive algorithm for 7- and all higher-order correlators.  
+
+In this exercise, the generic framework for flow analysis with multi-particle correlations is presented, after we generalize all results discussed so far.
+
+
+\begin{center}
+\large{\bf{The Final Touch: Generalizations}}\\
+\end{center}
+
+\noindent Since azimuthal angles $\varphi$ can be measured with the great precision, we can estimate the flow amplitudes $v_n$ and the symmetry planes $\Psi_n$ by using the correlation techniques. The cornerstone of this approach is the following analytic result for $m$-particle correlations derived recently~\cite{Bhalerao:2011yg}
+%
+\begin{equation}
+\left<e^{i(n_1\varphi_1+\cdots+n_m\varphi_m)}\right> = v_{n_1}\cdots v_{n_m}e^{i(n_1\Psi_{n_1}+\cdots+n_m\Psi_{n_m})}\,,
+\label{eq:generalResult}
+\end{equation}
+%
+where the average $\left<\cdots\right>$ goes over all distinct tuples of $m$ different azimuthal angles $\varphi$ reconstructed in the same event. A set $n_1,\ldots, n_m$ consists of $m$ non-zero integers. By carefully choosing the values in this set, one can completely eliminate the contribution from the symmetry planes in the RHS of Eq.~(\ref{eq:generalResult}) (e.g. by taking value of each integer equal number of times with positive and negative sign). For instance, one can recover from this general expression the result for 2-particle correlation in Eq.~(\ref{eq:2p}) by merely taking: $m=2$, $n_1=n$ and $n_2=-n$. It follows immediately:
+%
+\begin{equation}
+\left<e^{i(n_1\varphi_1+\cdots+n_m\varphi_m)}\right> = \left<e^{in(\varphi_1-\varphi_2)}\right> = 
+v_{n}^2 e^{i(n\Psi_{n}-n\Psi_{n})} = 
+v_{n}^2\,.
+\label{eq:cross-check}
+\end{equation}
+%
+
+Mathematically, the LHS of Eq.~(\ref{eq:generalResult}) corresponds to the following generic definition for the average $m$-particle correlation in harmonics $n_1,n_2,\ldots,n_m$:
+%
+\begin{eqnarray}
+\left<m\right>_{n_1,n_2,\ldots,n_m}&\equiv&\left<e^{i(n_1\varphi_{1}+n_2\varphi_{2}+\cdots+n_m\varphi_{m})}\right>\nonumber\\
+&\equiv&\frac{\displaystyle\sum_{\begin{subarray}{c}k_1,k_2,\ldots,k_m=1\\k_1\neq k_2\neq \ldots\neq k_m\end{subarray}}^{M}w_{k_1}w_{k_2}\cdots w_{k_m}\,e^{i(n_1\varphi_{k_1}+n_2\varphi_{k_2}+\cdots+n_m\varphi_{k_m})}}{\displaystyle\sum_{\begin{subarray}{c}k_1,k_2,\ldots,k_m=1\\k_1\neq k_2\neq \ldots\neq k_m\end{subarray}}^{M} w_{k_1}w_{k_2}\cdots w_{k_m}}\,.
+\label{eq:mpCorrelation}
+\end{eqnarray}
+%  
+In the above definition, $M$ is the multiplicity of an event, $\varphi$ labels the azimuthal angles of the produced particles, while $w$ labels particle weights whose physical meaning and usefulness will be elaborated on. We have in summation enforced the condition $k_1\neq k_2\neq \ldots\neq k_m$ in order to remove the trivial and non-negligible contributions from all possible autocorrelations (self-correlations) by definition in all summands. We stress that we consider any correlation technique utilized in anisotropic flow analyses to be unsound and unusable if it has any kind of contribution stemming from autocorrelations.  
+
+%\vspace{0.44cm}
+%\noindent\textbf{[Particle weights.]} 
+Particle weights appearing in definition (\ref{eq:mpCorrelation}) can be used to remove systematic biases originating from detector inefficiencies of various types. Well known examples of particle weights are so-called $\varphi$-weights, $w_{\varphi}$, which deal with the systematic bias due to non-uniform acceptance in azimuth, and $p_{\rm T}$-weights, $w_{p_{\rm T}}$, which deal with the non-uniform transverse momentum reconstruction efficiency of produced particles. In general, we allow the particle weight $w$ to be the most general function of the azimuthal angle, transverse momentum, pseudorapidity, particle type, etc.:
+%
+\begin{equation}
+w = w(\varphi,p_{{\rm T}},\eta,{\rm PID},\ldots)\,.
+\label{eq:generalParticleWeights}
+\end{equation}
+%   
+
+With the advent of a generic framework for flow analyses with multi-particle azimuthal correlations~\cite{Bilandzic:2013kga}, the LHS of Eq.~(\ref{eq:generalResult}), i.e. the RHS of Eq.~(\ref{eq:mpCorrelation}), can be evaluated fast and exactly for any number of particles $m$, for any choice of harmonics $n_1,\ldots, n_m$, and for any choice of particle weights $w$. This is achieved with the state-of-the-art recursive algorithm, which expresses recursively any starting multi-particle azimuthal correlator in terms of lower order ones. The standalone ROOT code can be obtained in the macro GenericFormulas.C from the following direct link: \url{https://cernbox.cern.ch/s/Az2QLH12X7T72yY}
+
+\vspace{0.5cm}
+\noindent\textbf{Question 1:} {\it Please download and see if you can compile and run the above mentioned standalone ROOT code, containing both the hard-coded analytic expressions and recursive algorithm. Few remarks on the code implementation.
+
+The code calculates multi-particle correlators, for a hardwired toy Monte Carlo example event consisting of 11 particles azimuthal angles and particle weights, and for specified harmonics, in three independent ways:\\
+a) standalone hard-coded analytic formulas; \\
+b) recursion; \\
+c) nested loops.
+
+Clearly, the last one is only there to cross-check whether a) and b) were calculated and implemented correctly. The a) is faster then b) for correlations having less than 6 particles, but a) cannot be compiled quickly for the case of 7, 8, and higher correlations due to the lengths of standalone formulas for higher order correlators. For any example, a), b) and c) should always give exactly the same numerical answer, the only difference is in CPU time. 
+
+What you were doing so far in your project, was approach a) implemented for some particular multi-particle correlators of interest, with hardwired harmonics. Now it's time to learn how to evaluate any multi-particle correlator of interest! To run this macro in interpreted mode in ROOT, just please execute in terminal:\\ \textbf{root -l GenericFormulas.C}\\ \\ 
+You can also compile the macro and run it as well, just please do:\\ \textbf{root -l GenericFormulas.C++}\\ \\ 
+However,  it takes $>$ 5 min to compile, due to length of standalone formulas for 8-p correlators. This was the main reason why we have abandoned the hard-coded expressions for multi-particle correlators in terms of $Q$-vectors, for higher-order correlators. Basically, it is impossible to compile in realistic time any hard-coded expression for multi-particle correlators involving more than 8 particles---yet another problem we have hit in the analysis...
+
+The main point here is that by playing with this macro you can understand how the a) and b) approaches work, and how to validate them both for small multiplicities with the nested-loops. Then in your own code in ROOT, please propagate everything, except the lengthy hard-coded expressions for 7- and higher-order correlators. 
+
+\vspace{0.5cm}
+\noindent\textbf{Question 2:} {\it Please port from the GenericFormulas.C macro to your own analysis code in ROOT everything except the lengthy hard-coded expressions for 7- and higher-order correlators.}
+
+\vspace{0.5cm}
+\noindent\textbf{Question 3:} {\it The ultimate challenge: Please try to reproduce the toy Monte Carlo study in Section IVA of \cite{Bilandzic:2013kga}, with the final goal of getting results as the ones in Fig. 3. If you accomplish this, you can claim that you master all technicalities of multi-particle azimuthal correlations, and then you can start using this technology in the data analysis. Wrap up the outcome of this study immediately and insert it in your final project.}
+
+\begin{thebibliography}{99}
+
+%\cite{Bilandzic:2012wva}
+\bibitem{Bilandzic:2012wva}
+  A.~Bilandzic,
+  %``Anisotropic flow measurements in ALICE at the large hadron collider,''
+  CERN-THESIS-2012-018.\\
+  Direct link: \url{https://www.nikhef.nl/pub/services/biblio/theses_pdf/thesis_A_Bilandzic.pdf} 
+  %%CITATION = CERN-THESIS-2012-018;%%
+  %7 citations counted in INSPIRE as of 28 Mar 2019
+
+%\cite{Bhalerao:2011yg}
+\bibitem{Bhalerao:2011yg}
+  R.~S.~Bhalerao, M.~Luzum and J.~Y.~Ollitrault,
+  %``Determining initial-state fluctuations from flow measurements in heavy-ion collisions,''
+  Phys.\ Rev.\ C {\bf 84} (2011) 034910
+  %doi:10.1103/PhysRevC.84.034910
+  [arXiv:1104.4740 [nucl-th]].
+  %%CITATION = doi:10.1103/PhysRevC.84.034910;%%
+  %91 citations counted in INSPIRE as of 14 Jan 2016
+
+%\cite{Bilandzic:2013kga}
+\bibitem{Bilandzic:2013kga}
+A.~Bilandzic, C.~H.~Christensen, K.~Gulbrandsen, A.~Hansen and Y.~Zhou,
+%``Generic framework for anisotropic flow analyses with multiparticle azimuthal correlations,''
+Phys.\ Rev.\ C {\bf 89} (2014) 6,  064904
+[arXiv:1312.3572 [nucl-ex]].
+%%CITATION = ARXIV:1312.3572;%%
+%18 citations counted in INSPIRE as of 09 Oct 2015 
+
+\end{thebibliography}
+
+\end{document}
+
+

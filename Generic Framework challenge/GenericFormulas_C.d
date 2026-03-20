@@ -1,0 +1,51 @@
+
+# DO NOT DELETE
+
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TComplex.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TMath.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TMathBase.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/RtypesCore.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/ROOT/RConfig.hxx
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/RVersion.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/ROOT/RVersion.hxx
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/RConfigure.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/DllImport.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TError.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/Rtypes.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/strtok.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/strlcpy.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/snprintf.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TGenericClassInfo.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TSchemaHelper.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TIsAProxy.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TVirtualIsAProxy.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TProfile.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TH1.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TAxis.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TNamed.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TObject.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TStorage.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TVersionCheck.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/RVersion.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TString.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/ROOT/TypeTraits.hxx
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TAttAxis.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TArrayD.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TArray.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TAttLine.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TAttFill.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TAttMarker.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TArrayC.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TArrayS.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TArrayI.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TArrayL64.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TArrayF.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/Foption.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/ROOT/EExecutionPolicy.hxx
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TVectorFfwd.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TVectorDfwd.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TFitResultPtr.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/TStopwatch.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/Riostream.h
+./GenericFormulas_C.so: /home/user/miniconda3/envs/root-env/include/RVersion.h /home/user/miniconda3/envs/root-env/include/ROOT/RConfig.hxx /home/user/miniconda3/envs/root-env/include/TClass.h /home/user/miniconda3/envs/root-env/include/TDictAttributeMap.h /home/user/miniconda3/envs/root-env/include/TInterpreter.h /home/user/miniconda3/envs/root-env/include/TROOT.h /home/user/miniconda3/envs/root-env/include/TBuffer.h /home/user/miniconda3/envs/root-env/include/TMemberInspector.h /home/user/miniconda3/envs/root-env/include/TError.h /home/user/miniconda3/envs/root-env/include/RtypesImp.h /home/user/miniconda3/envs/root-env/include/TIsAProxy.h /home/user/miniconda3/envs/root-env/include/TFileMergeInfo.h /home/user/miniconda3/envs/root-env/include/TCollectionProxyInfo.h /home/user/miniconda3/envs/root-env/bin/rootcling
+GenericFormulas_C__ROOTBUILDVERSION= 6.34.04
