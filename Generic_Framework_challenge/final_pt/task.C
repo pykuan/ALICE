@@ -8,7 +8,7 @@
 #include "Riostream.h"
 #include <vector>
 
-const int nEvents = 1000;
+const int nEvents = 5000;
 const int nBins = 200;
 const int nPar_acc = 1e6;//for acceptance, not nParticles
 const int nPar = 500;//nParticles before remove
@@ -127,11 +127,9 @@ void MCnu()
     pdf->SetParameter(2, vn[1]);
     phi = (double)pdf->GetRandom();
 
-
-
-    j = (int)gRandom->Uniform(0, 100) % 5;
+    j = (int)gRandom->Integer(5);
     if(j==0||j==1) {bKeep = 1;}
-
+    // cout<<"this is MCnu: "<<bKeep<<endl;
     if(pt>=0.4 && pt<1.2){
       if(bKeep){
         int b = h_weight->FindBin(pt);
@@ -169,12 +167,13 @@ void MCu()
   pdf->SetParameter(0, Psi);
 
   for(int k=0; k<nPar; k++){
-    bKeep = false;
+    bKeep = true;
     pt = (double)Boltzmann->GetRandom();
 
     if(pt<2) {vn[1]=0.3*pt/2.;}
     else vn[1] = 0.3;
     pdf->SetParameter(2, vn[1]);
+    // cout<<"this is MCu: "<<bKeep<<endl;
 
     phi = (double)pdf->GetRandom();
     weights.push_back(1.);
@@ -296,7 +295,7 @@ void CalculateData(bool bUniform, bool bUseWeights){
 
 
   for(int j=0; j<nEvents; j++){
-
+  cout<<"event "<<j<<endl;
   if(bUniform){MCu();}
   else {MCnu();}
 
@@ -393,40 +392,40 @@ void task()
 //  nu+weight
  printf("\n non-uniform + weight");
  CalculateData(false, true);
-//  for(int i=2; i<maxHarmonic+2; i++){
-//   ydata4[i-2] = recursion[0][i-2]->GetBinContent(1)/pow(10., -1*i);
-//  }
+ for(int i=2; i<maxHarmonic+2; i++){
+  ydata4[i-2] = recursion[0][i-2]->GetBinContent(1)/pow(10., -1*i);
+ }
 
-//  //nu
-//  printf("\n non-uniform");
-//  CalculateData(false, false);
-//  for(int i=2; i<maxHarmonic+2; i++){
-//   ydata3[i-2] = recursion[0][i-2]->GetBinContent(1)/pow(10., -1*i);
-//  }
+ //nu
+ printf("\n non-uniform");
+ CalculateData(false, false);
+ for(int i=2; i<maxHarmonic+2; i++){
+  ydata3[i-2] = recursion[0][i-2]->GetBinContent(1)/pow(10., -1*i);
+ }
 
-//  //u
-//  printf("\n uniform");
-//  CalculateData(true, false);
-//  for(int i=2; i<maxHarmonic+2; i++){
-//   ydata2[i-2] = recursion[0][i-2]->GetBinContent(1)/pow(10., -1*i);
-//  }
+ //u
+ printf("\n uniform");
+ CalculateData(true, false);
+ for(int i=2; i<maxHarmonic+2; i++){
+  ydata2[i-2] = recursion[0][i-2]->GetBinContent(1)/pow(10., -1*i);
+ }
 
-//  printf("\n\n"); 
+ printf("\n\n"); 
 
-// //  TGraph* g1 = new TGraph(maxHarmonic, xdata, ydata1);
-//  TGraph* g2 = new TGraph(maxHarmonic, xdata, ydata2);
-//  TGraph* g3 = new TGraph(maxHarmonic, xdata, ydata3);
-//  TGraph* g4 = new TGraph(maxHarmonic, xdata, ydata4);
+//  TGraph* g1 = new TGraph(maxHarmonic, xdata, ydata1);
+ TGraph* g2 = new TGraph(maxHarmonic, xdata, ydata2);
+ TGraph* g3 = new TGraph(maxHarmonic, xdata, ydata3);
+ TGraph* g4 = new TGraph(maxHarmonic, xdata, ydata4);
 
-// //  g1->SetName("g_true");
-//  g2->SetName("g_u");
-//  g3->SetName("g_nu");
-//  g4->SetName("g_nuw");
+//  g1->SetName("g_true");
+ g2->SetName("g_u");
+ g3->SetName("g_nu");
+ g4->SetName("g_nuw");
 
-// //  g1->Write(g1->GetName(), TObject::kSingleKey + TObject::kOverwrite);
-//  g2->Write(g2->GetName(), TObject::kSingleKey + TObject::kOverwrite);
-//  g3->Write(g3->GetName(), TObject::kSingleKey + TObject::kOverwrite);
-//  g4->Write(g4->GetName(), TObject::kSingleKey + TObject::kOverwrite);
+//  g1->Write(g1->GetName(), TObject::kSingleKey + TObject::kOverwrite);
+ g2->Write(g2->GetName(), TObject::kSingleKey + TObject::kOverwrite);
+ g3->Write(g3->GetName(), TObject::kSingleKey + TObject::kOverwrite);
+ g4->Write(g4->GetName(), TObject::kSingleKey + TObject::kOverwrite);
 
  file->Close();
  delete file;
