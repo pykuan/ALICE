@@ -320,7 +320,7 @@ void CalculateData(bool bUniform, bool bUseWeights){
   recursion[0][1]->Fill(0.5,threeRecursion.Re(),wThreeRecursion); // <<cos(h1*phi1+h2*phi2+h3*phi3)>>
   recursion[1][1]->Fill(0.5,threeRecursion.Im(),wThreeRecursion); // <<sin(h1*phi1+h2*phi2+h3*phi3)>>
   //  4-p correlations:
-  h1=-3; h2=-2; h3=2; h4=3;
+  h1=-5; h2=-2; h3=2; h4=5;
   Int_t harmonics_Four_Num[4] = {h1,h2,h3,h4};       
   Int_t harmonics_Four_Den[4] = {0,0,0,0};       
   TComplex fourRecursion = Recursion(4,harmonics_Four_Num)/Recursion(4,harmonics_Four_Den).Re();
@@ -328,7 +328,7 @@ void CalculateData(bool bUniform, bool bUseWeights){
   recursion[0][2]->Fill(0.5,fourRecursion.Re(),wFourRecursion); // <<cos(h1*phi1+h2*phi2+h3*phi3+h4*phi4)>>
   recursion[1][2]->Fill(0.5,fourRecursion.Im(),wFourRecursion); // <<<sin(h1*phi1+h2*phi2+h3*phi3+h4*phi4)>>
   //  5-p correlations:
-  h1=-5; h2=-4; h3=3; h4=3; h5=3;
+  h1=-5; h2=-4; h3=-1; h4=4; h5=6;
   Int_t harmonics_Five_Num[5] = {h1,h2,h3,h4,h5};       
   Int_t harmonics_Five_Den[5] = {0,0,0,0,0};       
   TComplex fiveRecursion = Recursion(5,harmonics_Five_Num)/Recursion(5,harmonics_Five_Den).Re();
@@ -336,7 +336,7 @@ void CalculateData(bool bUniform, bool bUseWeights){
   recursion[0][3]->Fill(0.5,fiveRecursion.Re(),wFiveRecursion); // <<cos(h1*phi1+h2*phi2+h3*phi3+h4*phi4+h5*phi5)>>
   recursion[1][3]->Fill(0.5,fiveRecursion.Im(),wFiveRecursion); // <<<sin(h1*phi1+h2*phi2+h3*phi3+h4*phi4+h5*phi5)>>
   //  6-p correlations:
-  h1=-2; h2=-2; h3=-1; h4=-1; h5=3; h6=3;
+  h1=-2; h2=-2; h3=-2; h4=-2; h5=3; h6=5;
   Int_t harmonics_Six_Num[6] = {h1,h2,h3,h4,h5,h6};       
   Int_t harmonics_Six_Den[6] = {0,0,0,0,0,0};       
   TComplex sixRecursion = Recursion(6,harmonics_Six_Num)/Recursion(6,harmonics_Six_Den).Re();
@@ -344,7 +344,7 @@ void CalculateData(bool bUniform, bool bUseWeights){
   recursion[0][4]->Fill(0.5,sixRecursion.Re(),wSixRecursion); // <<cos(h1*phi1+h2*phi2+h3*phi3+h4*phi4+h5*phi5+h6*phi6)>>
   recursion[1][4]->Fill(0.5,sixRecursion.Im(),wSixRecursion); // <<<sin(h1*phi1+h2*phi2+h3*phi3+h4*phi4+h5*phi5+h6*phi6)>>
   //  7-p correlations:
-  h1=-6; h2=-5; h3=-1; h4=1; h5=2; h6=3; h7=6;
+  h1=-2; h2=-2; h3=-2; h4=-1; h5=2; h6=2; h7=3;
   Int_t harmonics_Seven_Num[7] = {h1,h2,h3,h4,h5,h6,h7};       
   Int_t harmonics_Seven_Den[7] = {0,0,0,0,0,0,0};       
   TComplex sevenRecursion = Recursion(7,harmonics_Seven_Num)/Recursion(7,harmonics_Seven_Den).Re();
@@ -352,7 +352,7 @@ void CalculateData(bool bUniform, bool bUseWeights){
   recursion[0][5]->Fill(0.5,sevenRecursion.Re(),wSevenRecursion); // <<cos(h1*phi1+h2*phi2+h3*phi3+h4*phi4+h5*phi5+h6*phi6+h7*phi7)>>
   recursion[1][5]->Fill(0.5,sevenRecursion.Im(),wSevenRecursion); // <<<sin(h1*phi1+h2*phi2+h3*phi3+h4*phi4+h5*phi5+h6*phi6+h7*phi7)>>
   //  8-p correlations:
-  h1=-6; h2=-6; h3=-5; h4=2; h5=3; h6=3; h7=4; h8=5;
+  h1=-5; h2=-4; h3=-2; h4=-2; h5=2; h6=2; h7=4; h8=5;
   Int_t harmonics_Eight_Num[8] = {h1,h2,h3,h4,h5,h6,h7,h8};       
   Int_t harmonics_Eight_Den[8] = {0,0,0,0,0,0,0,0};       
   TComplex eightRecursion = Recursion(8,harmonics_Eight_Num)/Recursion(8,harmonics_Eight_Den).Re();
